@@ -8,14 +8,6 @@ function PokemonForm({formSearchInput, setSearchInput}) {
   const [frontUrl, setFrontUrl] = useState("")
   const [backUrl, setBackUrl] = useState("")
 
-  const newForm = {
-    name: name,
-    hp: hp,
-    sprites: {
-      front: frontUrl,
-      back: backUrl
-    }
-  }
 
   function handlePokemonSubmit(e) {
     e.preventDefault();
@@ -25,7 +17,14 @@ function PokemonForm({formSearchInput, setSearchInput}) {
       headers: {
         "content-type": "application/json"
       },
-      body: JSON.stringify({newForm})
+      body: JSON.stringify({    
+        name: name,
+        hp: hp,
+        sprites: {
+          front: frontUrl,
+          back: backUrl
+        }
+    })
     })
     .then((res) => res.json())
     .then((data) => formSearchInput(data))
